@@ -175,15 +175,7 @@ bool CryptoNight::selfTest(int algo) {
     bool rc = memcmp(output, test_output_v0, (doubleHash ? 64 : 32)) == 0;
 #   endif
 
-    if (rc) {
-        cryptonight_hash_ctx(test_input, 76, output, ctx, 1);
 
-#       ifndef XMRIG_NO_AEON
-        rc = memcmp(output, algo == xmrig::ALGO_CRYPTONIGHT_LITE ? test_output_v1_lite : test_output_v1, (doubleHash ? 64 : 32)) == 0;
-#       else
-        rc = memcmp(output, test_output_v1, (doubleHash ? 64 : 32)) == 0;
-#       endif
-    }
 
     _mm_free(ctx->memory);
     _mm_free(ctx);
